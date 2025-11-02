@@ -58,4 +58,11 @@ public class PatientService {
 
     return patientDTO;
   }
+
+  public void delete(UUID id) {
+    Patient patient = patientRepository.findById(id)
+        .orElseThrow(() -> new PatientNotFoundException("Patient with id " + id + " not found."));
+    
+    patientRepository.delete(patient);
+  }
 }
